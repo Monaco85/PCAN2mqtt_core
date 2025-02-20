@@ -1,0 +1,26 @@
+﻿{
+  "CanServer": "192.168.0.10",
+  "CanServerPort": 29536,
+  "CanForwardWrite": true,
+  "CanForwardRead": false,
+  "CanForwardResponse": true,
+  "CanReceiveBufferSize": 48,
+  "CanSenderId": "69F",
+  "CanInterfaceName": "slcan0",
+
+  "MqttServer": "192.168.0.10",
+  "MqttClientId": "Can2Mqtt",
+  "MqttTopic": "heating",
+  "MqttTranslator": "StiebelEltron",
+  "MqttUser": "",
+  "MqttPassword": "",
+  "MqttAcceptSet": false,
+
+  "NoUnits": false,
+  "Language": "en",
+  "ConvertUnknown": false,
+
+  "AutoPolling": false,
+  "AutoPollingInterval": 120,
+  "AutoPollingThrottle": 150
+}

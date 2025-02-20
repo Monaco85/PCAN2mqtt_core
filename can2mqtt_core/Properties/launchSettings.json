@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "can2mqtt_core": {
+      "commandName": "Project",
+      "workingDirectory": "./bin/Debug/net8.0",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true
+    }
+  }
+}
