@@ -38,8 +38,8 @@ namespace can2mqtt
         private string MqttServer;
         private string MqttClientId;
         private bool MqttAcceptSet = false;
-        private NetworkStream TcpCanStream;
-        private TcpClient ScdClient = null;
+        //private NetworkStream TcpCanStream;
+        //private TcpClient ScdClient = null;
         private StiebelEltron Translator = null;
         private string Language = "EN";
         private bool ConvertUnknown = false;
@@ -154,27 +154,20 @@ namespace can2mqtt
         }
         */
         public override async Task StartAsync(CancellationToken stoppingToken)
-        {
-            // Load the config from the config file
+        { // Load the config from the config file
             if (!LoadConfig())
             {
                 Logger.LogCritical("Unable to load config successfully.");
                 return;
             }
-
             await SetupMqtt();
             SetupAutoPolling(stoppingToken);
-            if (AutoPollingTask == null)
-            {
-                Logger.LogCritical("AutoPollingTask is null.");
-                return;
-            }
 
             // Start listening on PCAN
             TPCANHandle canHandle = PCANBasic.PCAN_USBBUS1;
             await PcCanBusListener(canHandle);
-            await AutoPollingTask;
-        }
+            AutoPollingTask.Wait();
+        } 
 
 
         /// <summary>
@@ -530,6 +523,8 @@ namespace can2mqtt
                 }
 
                 string responseData = Encoding.ASCII.GetString(canMsg.DATA, 0, canMsg.LEN);
+
+
                 Logger.LogInformation("Received CAN Frame: {0}", responseData);
             }
 
@@ -628,7 +623,7 @@ namespace can2mqtt
                 }
             }
         */
-        private async Task PcCanBusListener(TPCANHandle canHandle)
+        /*private async Task PcCanBusListener(TPCANHandle canHandle)
         {
             // Check if PCAN is already initialized
             TPCANStatus status = PCANBasic.GetStatus(canHandle);
@@ -672,6 +667,100 @@ namespace can2mqtt
 
             //PCANBasic.Uninitialize(canHandle);
             //Logger.LogInformation("Disconnected from PCAN {0}", canHandle);
+        }
+        */
+
+        public async Task PcCanBusListener(TPCANHandle canHandle)
+        {
+            try
+            {
+                // Initialize PCAN-Basic
+                TPCANStatus status = PCANBasic.Initialize(canHandle, TPCANBaudrate.PCAN_BAUD_20K);
+                //TPCANStatus status = PCANBasic.SetValue(canHandle, TPCANParameter. PCAN_PARAMETER_LOOPBACK, TPCANParameter.PCAN_PARAMETER_ON, sizeof(uint));
+                if (status != TPCANStatus.PCAN_ERROR_OK)
+                {
+                    Logger.LogError("Error initializing PCAN: {0}", status);
+                    return;
+                }
+
+                Logger.LogInformation("CONNECTED TO PCAN {0}", canHandle);
+
+                // Infinite loop to read CAN bus data
+                byte[] data = new byte[8];
+                string responseData = string.Empty;
+                var previousData = "";
+
+                while (true)
+                {
+                    // Wait for CAN frame
+                    TPCANMsg canMsg = new TPCANMsg();
+                    TPCANTimestamp canTimestamp = new TPCANTimestamp();
+                    status = PCANBasic.Read(canHandle, out canMsg, out canTimestamp);
+
+                    if (status != TPCANStatus.PCAN_ERROR_OK)
+                    {
+                        Logger.LogError("Error reading CAN message: {0}", status);
+                        break;
+                    }
+
+                    responseData = previousData + BitConverter.ToString(canMsg.DATA, 0, canMsg.LEN);
+
+                    // Each received frame starts with "< frame " and ends with " >".
+                    if (!responseData.StartsWith("< frame "))
+                    {
+                        if (responseData.Contains("< frame "))
+                        {
+                            Logger.LogWarning("Dropping \"{0}\" because it is not expected at the beginning of a frame.", responseData.Substring(0, responseData.IndexOf("< frame ")));
+                            responseData = responseData.Substring(responseData.IndexOf("< frame "));
+                        }
+                        else
+                        {
+                            responseData = "";
+                        }
+                    }
+
+                    if (responseData != "" && !responseData.Contains(" >"))
+                    {
+                        Logger.LogWarning("No closing tag found. Save data and get next bytes.");
+                        previousData = responseData;
+                        continue;
+                    }
+
+                    while (responseData.Contains(" >"))
+                    {
+                        var frame = responseData.Substring(0, responseData.IndexOf(" >") + 2);
+
+                        var canFrame = new CanFrame
+                        {
+                            RawFrame = frame
+                        };
+
+                        Logger.LogInformation("Received CAN Frame: {0}", canFrame.RawFrame);
+                        responseData = responseData.Substring(responseData.IndexOf(" >") + 2);
+
+                        if ((canFrame.CanFrameType == "0" && CanForwardWrite) ||
+                            (canFrame.CanFrameType == "1" && CanForwardRead) ||
+                            (canFrame.CanFrameType == "2" && CanForwardResponse))
+                        {
+                            await SendMQTT(canFrame);
+                        }
+                    }
+
+                    previousData = responseData;
+                }
+
+                PCANBasic.Uninitialize(canHandle);
+                Logger.LogInformation("Disconnected from PCAN {0}", canHandle);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, "Error while reading CAN bus.");
+            }
+            finally
+            {
+                // Reconnect to the CAN bus but do not wait for this here to avoid infinite loops
+                _ = PcCanBusListener(canHandle); // Reconnect
+            }
         }
 
         /// <summary>
