@@ -9,6 +9,7 @@ using System.Text.Json.Nodes;
 using Peak.Can.Basic;
 using Microsoft.Extensions.Logging;
 using Peak.Can.Basic.BackwardCompatibility;
+using System.Globalization;
 
 
 namespace can2mqtt
@@ -28,9 +29,9 @@ namespace can2mqtt
         private bool CanForwardWrite = true;
         private bool CanForwardRead = false;
         private bool CanForwardResponse = true;
-        private int CanReceiveBufferSize = 48;
+//        private int CanReceiveBufferSize = 48;
         private string CanSenderId;
-        private string CanInterfaceName = "slcan0";
+//        private string CanInterfaceName = "slcan0";
         private bool NoUnit = false;
         private string MqttTopic = "";
         private string MqttUser;
@@ -43,12 +44,14 @@ namespace can2mqtt
         private StiebelEltron Translator = null;
         private string Language = "EN";
         private bool ConvertUnknown = false;
-            //PEAK handle data type
+        //PEAK handle data type
         TPCANHandle canHandle = PCANBasic.PCAN_USBBUS1;
         private bool AutoPolling = false;
         private int AutoPollingInterval = 120; // in seconds
         private int AutoPollingThrottle = 150; // in milliseconds
         private Task AutoPollingTask = null;
+        byte[] CanSenddata = new byte[9];
+
 
         private readonly ILoggerFactory LoggerFactory;
 
@@ -63,7 +66,7 @@ namespace can2mqtt
             while (!stoppingToken.IsCancellationRequested)
             {
                 Logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                await Task.Delay(1000, stoppingToken);
+                await Task.Delay(10, stoppingToken);
             }
         }
 
@@ -96,7 +99,7 @@ namespace can2mqtt
                 CanForwardRead = bool.Parse(config["CanForwardRead"].ToString());
                 CanForwardResponse = Convert.ToBoolean(config["CanForwardResponse"].ToString());
                 NoUnit = Convert.ToBoolean(config["NoUnits"].ToString());
-                CanReceiveBufferSize = Convert.ToInt32(config["CanReceiveBufferSize"].ToString());
+//                CanReceiveBufferSize = Convert.ToInt32(config["CanReceiveBufferSize"].ToString());
                 MqttUser = Convert.ToString(config["MqttUser"]);
                 MqttPassword = Convert.ToString(config["MqttPassword"]);
                 MqttClientId = Convert.ToString(config["MqttClientId"]);
@@ -105,7 +108,7 @@ namespace can2mqtt
                 CanServerPort = Convert.ToInt32(config["CanServerPort"].ToString());
                 MqttAcceptSet = Convert.ToBoolean(config["MqttAcceptSet"].ToString());
                 CanSenderId = Convert.ToString(config["CanSenderId"]);
-                CanInterfaceName = Convert.ToString(config["CanInterfaceName"]);
+//                CanInterfaceName = Convert.ToString(config["CanInterfaceName"]);
                 Language = Convert.ToString(config["Language"]).ToUpper();
                 ConvertUnknown = bool.Parse(config["ConvertUnknown"].ToString());
                 AutoPolling = bool.Parse(config["AutoPolling"].ToString());
@@ -166,8 +169,8 @@ namespace can2mqtt
             // Start listening on PCAN
             TPCANHandle canHandle = PCANBasic.PCAN_USBBUS1;
             await PcCanBusListener(canHandle);
-            AutoPollingTask.Wait();
-        } 
+            //AutoPollingTask.Wait();
+        }
 
 
         /// <summary>
@@ -179,26 +182,26 @@ namespace can2mqtt
         /// <param name="canPort">The CAN Server Port</param>
         /// <returns></returns>
         /// 
-            /*
-            private async Task SendCan(string topic, byte[] payload, string canServer, int canPort)
+        /*
+        private async Task SendCan(string topic, byte[] payload, string canServer, int canPort)
+        {
+            Logger.LogDebug("Sending write request for topic {0}", topic);
+
+            try
             {
-                Logger.LogDebug("Sending write request for topic {0}", topic);
+                //Get the data
+                var data = Encoding.UTF8.GetString(payload);
 
-                try
-                {
-                    //Get the data
-                    var data = Encoding.UTF8.GetString(payload);
-
-                    //Convert the data to the required format
-                    var canFrames = Translator.TranslateBack(topic, data, CanSenderId, NoUnit, "0");
-                    await SendCanFrame(canServer, canPort, canFrames);
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogError(ex, "Failed to set value via CAN bus.");
-                }
+                //Convert the data to the required format
+                var canFrames = Translator.TranslateBack(topic, data, CanSenderId, NoUnit, "0");
+                await SendCanFrame(canServer, canPort, canFrames);
             }
-            */
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, "Failed to set value via CAN bus.");
+            }
+        }
+        */
         private async Task SendCan(string topic, byte[] payload, TPCANHandle canHandle)
         {
             Logger.LogDebug("Sending write request for topic {0}", topic);
@@ -294,36 +297,43 @@ namespace can2mqtt
         private async Task SendCanFrame(TPCANHandle canHandle, IEnumerable<string> canFrames)
         {
             await ConnectPcanBus(canHandle);
-
-            foreach (var canFrame in canFrames)
+            try
             {
-                // Convert data part of the can Frame to the required format
-                var canFrameDataPart = canFrame.Split("#")[1];
-                byte[] data = new byte[canFrameDataPart.Length / 2];
 
-                for (int i = 0; i < canFrameDataPart.Length; i += 2)
+                foreach (var canFrame in canFrames)
                 {
-                    data[i / 2] = Convert.ToByte(canFrameDataPart.Substring(i, 2), 16);
+                    // Convert data part of the can Frame to the required format
+                    var canFrameDataPart = canFrame.Split("#")[1];
+                    //byte[] data = new byte[canFrameDataPart.Length / 2];
+
+                    for (int i = 0; i < canFrameDataPart.Length; i += 2)
+                    {
+                        CanSenddata[i / 2] = Convert.ToByte(canFrameDataPart.Substring(i, 2), 16);
+                    }
+
+                    TPCANMsg canMsg = new TPCANMsg
+                    {
+                        ID = Convert.ToUInt32(CanSenderId, 16),
+                        LEN = 7,
+                        MSGTYPE = TPCANMessageType.PCAN_MESSAGE_STANDARD,
+                        DATA = CanSenddata
+                    };
+
+                    TPCANStatus status = PCANBasic.Write(canHandle, ref canMsg);
+
+                    if (status != TPCANStatus.PCAN_ERROR_OK)
+                    {
+                        Logger.LogError("Error sending CAN frame: {0}", status);
+                    }
+                    else
+                    {
+                        Logger.LogInformation("Sent CAN Frame: {0}", BitConverter.ToString(CanSenddata));
+                    }
                 }
-
-                TPCANMsg canMsg = new TPCANMsg
-                {
-                    ID = Convert.ToUInt32(CanSenderId, 16),
-                    LEN = Convert.ToByte(data.Length),
-                    MSGTYPE = TPCANMessageType.PCAN_MESSAGE_STANDARD,
-                    DATA = data
-                };
-
-                TPCANStatus status = PCANBasic.Write(canHandle, ref canMsg);
-
-                if (status != TPCANStatus.PCAN_ERROR_OK)
-                {
-                    Logger.LogError("Error sending CAN frame: {0}", status);
-                }
-                else
-                {
-                    Logger.LogInformation("Sent CAN Frame: {0}", BitConverter.ToString(data));
-                }
+            }
+            catch (Exception e)
+            {
+                Logger.LogError("Exception PCAN sending CAN frame");
             }
         }
 
@@ -334,156 +344,156 @@ namespace can2mqtt
         /// <param name="canServer">socketcand server address</param>
         /// <param name="canPort">socketcand server port</param>
         /// <returns></returns>
-            /*
-            public async Task ConnectTcpCanBus(string canServer, int canPort)
+        /*
+        public async Task ConnectTcpCanBus(string canServer, int canPort)
+        {
+            if (ScdClient != null && ScdClient.Connected)
             {
-                if (ScdClient != null && ScdClient.Connected)
+                Logger.LogTrace("Already connected to SocketCanD.");
+                return;
+            }
+
+            //Create TCP Client for connection to socketcand (=scd)
+            while (ScdClient == null || !ScdClient.Connected)
+            {
+                try
                 {
-                    Logger.LogTrace("Already connected to SocketCanD.");
-                    return;
+                    ScdClient = new TcpClient(canServer, canPort);
                 }
-
-                //Create TCP Client for connection to socketcand (=scd)
-                while (ScdClient == null || !ScdClient.Connected)
+                catch (Exception ex)
                 {
-                    try
-                    {
-                        ScdClient = new TcpClient(canServer, canPort);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.LogError(ex, "FAILED TO CONNECT TO SOCKETCAND {1}. Retry...", canServer);
-                    }
-                    await Task.Delay(TimeSpan.FromSeconds(5));
+                    Logger.LogError(ex, "FAILED TO CONNECT TO SOCKETCAND {1}. Retry...", canServer);
                 }
+                await Task.Delay(TimeSpan.FromSeconds(5));
+            }
 
-                Logger.LogInformation("CONNECTED TO SOCKETCAND {0} ON PORT {1}", canServer, canPort);
+            Logger.LogInformation("CONNECTED TO SOCKETCAND {0} ON PORT {1}", canServer, canPort);
 
-                //Create TCP Stream to read the CAN Bus Data
-                byte[] data = new byte[CanReceiveBufferSize];
-                TcpCanStream = ScdClient.GetStream();
-                int bytes = TcpCanStream.Read(data, 0, data.Length);
+            //Create TCP Stream to read the CAN Bus Data
+            byte[] data = new byte[CanReceiveBufferSize];
+            TcpCanStream = ScdClient.GetStream();
+            int bytes = TcpCanStream.Read(data, 0, data.Length);
 
 
-                if (Encoding.Default.GetString(data, 0, bytes) == "< hi >")
+            if (Encoding.Default.GetString(data, 0, bytes) == "< hi >")
+            {
+                Logger.LogInformation("Handshake successful. Opening CAN interface...");
+                TcpCanStream.Write(Encoding.Default.GetBytes("< open " + CanInterfaceName + " >"));
+
+                bytes = TcpCanStream.Read(data, 0, data.Length);
+                if (Encoding.Default.GetString(data, 0, bytes) == "< ok >")
                 {
-                    Logger.LogInformation("Handshake successful. Opening CAN interface...");
-                    TcpCanStream.Write(Encoding.Default.GetBytes("< open " + CanInterfaceName + " >"));
+                    Logger.LogInformation("Opening connection to slcan0 successful. Changing socketcand mode to raw...");
+                    TcpCanStream.Write(Encoding.Default.GetBytes("< rawmode >"));
 
                     bytes = TcpCanStream.Read(data, 0, data.Length);
                     if (Encoding.Default.GetString(data, 0, bytes) == "< ok >")
                     {
-                        Logger.LogInformation("Opening connection to slcan0 successful. Changing socketcand mode to raw...");
-                        TcpCanStream.Write(Encoding.Default.GetBytes("< rawmode >"));
-
-                        bytes = TcpCanStream.Read(data, 0, data.Length);
-                        if (Encoding.Default.GetString(data, 0, bytes) == "< ok >")
-                        {
-                            Logger.LogInformation("Change to rawmode successful");
-                        }
+                        Logger.LogInformation("Change to rawmode successful");
                     }
                 }
             }
-            */
+        }
+        */
 
-            /// <summary>
-            /// Listen to the CAN Bus (via TCP) and generate MQTT Message if there is an update
-            /// </summary>
-            /// <param name="canServer">socketcand server address</param>
-            /// <param name="canPort">socketcand server port</param>
-            /// <returns></returns>
-            /*
-                        public async Task TcpCanBusListener(string canServer, int canPort)
+        /// <summary>
+        /// Listen to the CAN Bus (via TCP) and generate MQTT Message if there is an update
+        /// </summary>
+        /// <param name="canServer">socketcand server address</param>
+        /// <param name="canPort">socketcand server port</param>
+        /// <returns></returns>
+        /*
+                    public async Task TcpCanBusListener(string canServer, int canPort)
+                    {
+                        try
                         {
-                            try
+                            byte[] data = new byte[CanReceiveBufferSize];
+                            string responseData = string.Empty;
+                            var previousData = "";
+
+                            await ConnectTcpCanBus(canServer, canPort);
+                            int bytes = TcpCanStream.Read(data, 0, data.Length);
+
+                            //Infinite Loop
+                            while (bytes > 0)
                             {
-                                byte[] data = new byte[CanReceiveBufferSize];
-                                string responseData = string.Empty;
-                                var previousData = "";
+                                //Get the string from the received bytes.
+                                responseData = previousData + Encoding.ASCII.GetString(data, 0, bytes);
 
-                                await ConnectTcpCanBus(canServer, canPort);
-                                int bytes = TcpCanStream.Read(data, 0, data.Length);
-
-                                //Infinite Loop
-                                while (bytes > 0)
+                                //Each received frame starts with "< frame " and ends with " >".
+                                //Check if the current responseData starts with "< frame". If not, drop everything before
+                                if (!responseData.StartsWith("< frame "))
                                 {
-                                    //Get the string from the received bytes.
-                                    responseData = previousData + Encoding.ASCII.GetString(data, 0, bytes);
-
-                                    //Each received frame starts with "< frame " and ends with " >".
-                                    //Check if the current responseData starts with "< frame". If not, drop everything before
-                                    if (!responseData.StartsWith("< frame "))
+                                    if (responseData.Contains("< frame "))
                                     {
-                                        if (responseData.Contains("< frame "))
-                                        {
-                                            //just take everything starting at "< frame "
-                                            Logger.LogWarning("Dropping \"{0}\" because it is not expected at the beginning of a frame.", responseData.Substring(0, responseData.IndexOf("< frame ")));
-                                            responseData = responseData.Substring(responseData.IndexOf("< frame "));
-                                        }
-                                        else
-                                        {
-                                            //Drop everything
-                                            responseData = "";
-                                        }
+                                        //just take everything starting at "< frame "
+                                        Logger.LogWarning("Dropping \"{0}\" because it is not expected at the beginning of a frame.", responseData.Substring(0, responseData.IndexOf("< frame ")));
+                                        responseData = responseData.Substring(responseData.IndexOf("< frame "));
                                     }
-
-                                    //Check if the responData has a closing " >". If not, save data and go on reading.
-                                    if (responseData != "" && !responseData.Contains(" >"))
+                                    else
                                     {
-                                        Logger.LogWarning("No closing tag found. Save data and get next bytes.");
-                                        previousData = responseData;
-                                        continue;
+                                        //Drop everything
+                                        responseData = "";
                                     }
-
-                                    //As long as full frames exist in responseData
-                                    while (responseData.Contains(" >"))
-                                    {
-                                        var frame = responseData.Substring(0, responseData.IndexOf(" >") + 2);
-
-                                        //Create the CAN frame
-                                        var canFrame = new CanFrame
-                                        {
-                                            RawFrame = frame
-                                        };
-
-                                        Logger.LogInformation("Received CAN Frame: {0}", canFrame.RawFrame);
-                                        responseData = responseData.Substring(responseData.IndexOf(" >") + 2);
-
-                                        //If forwarding is disabled for this type of frame, ignore it. Otherwise send the Frame
-                                        if (canFrame.CanFrameType == "0" && CanForwardWrite ||
-                                            canFrame.CanFrameType == "1" && CanForwardRead ||
-                                            canFrame.CanFrameType == "2" && CanForwardResponse)
-                                        {
-                                            //Sent the CAN frame via MQTT
-                                            await SendMQTT(canFrame);
-                                        }
-                                    }
-
-                                    //Save data handled at next read
-                                    previousData = responseData;
-
-                                    //Reset byte counter
-                                    bytes = 0;
-
-                                    //Get next packages from canlogserver
-                                    bytes = TcpCanStream.Read(data, 0, data.Length);
                                 }
-                                //Close the TCP Stream
-                                ScdClient.Close();
 
-                                Logger.LogInformation("Disconnected from canServer {0} Port {1}", canServer, canPort);
+                                //Check if the responData has a closing " >". If not, save data and go on reading.
+                                if (responseData != "" && !responseData.Contains(" >"))
+                                {
+                                    Logger.LogWarning("No closing tag found. Save data and get next bytes.");
+                                    previousData = responseData;
+                                    continue;
+                                }
+
+                                //As long as full frames exist in responseData
+                                while (responseData.Contains(" >"))
+                                {
+                                    var frame = responseData.Substring(0, responseData.IndexOf(" >") + 2);
+
+                                    //Create the CAN frame
+                                    var canFrame = new CanFrame
+                                    {
+                                        RawFrame = frame
+                                    };
+
+                                    Logger.LogInformation("Received CAN Frame: {0}", canFrame.RawFrame);
+                                    responseData = responseData.Substring(responseData.IndexOf(" >") + 2);
+
+                                    //If forwarding is disabled for this type of frame, ignore it. Otherwise send the Frame
+                                    if (canFrame.CanFrameType == "0" && CanForwardWrite ||
+                                        canFrame.CanFrameType == "1" && CanForwardRead ||
+                                        canFrame.CanFrameType == "2" && CanForwardResponse)
+                                    {
+                                        //Sent the CAN frame via MQTT
+                                        await SendMQTT(canFrame);
+                                    }
+                                }
+
+                                //Save data handled at next read
+                                previousData = responseData;
+
+                                //Reset byte counter
+                                bytes = 0;
+
+                                //Get next packages from canlogserver
+                                bytes = TcpCanStream.Read(data, 0, data.Length);
                             }
-                            catch (Exception ex)
-                            {
-                                Logger.LogError(ex, "Error while reading CanBus Server.");
-                            }
-                            finally
-                            {
-                                //Reconnect to the canlogserver but do not wait for this here to avoid infinite loops
-                                _ = TcpCanBusListener(canServer, canPort); //Reconnect
-                            }
+                            //Close the TCP Stream
+                            ScdClient.Close();
+
+                            Logger.LogInformation("Disconnected from canServer {0} Port {1}", canServer, canPort);
                         }
-                        */
+                        catch (Exception ex)
+                        {
+                            Logger.LogError(ex, "Error while reading CanBus Server.");
+                        }
+                        finally
+                        {
+                            //Reconnect to the canlogserver but do not wait for this here to avoid infinite loops
+                            _ = TcpCanBusListener(canServer, canPort); //Reconnect
+                        }
+                    }
+                    */
         public async Task ConnectPcanBus(TPCANHandle canHandle)
         {
             // Check if PCAN is already initialized
@@ -500,7 +510,7 @@ namespace can2mqtt
             if (status != TPCANStatus.PCAN_ERROR_OK)
             {
                 Logger.LogError("FAILED TO CONNECT TO PCAN {0}. Retry...", status);
-                await Task.Delay(TimeSpan.FromSeconds(5));
+                await Task.Delay(TimeSpan.FromSeconds(2));
                 await ConnectPcanBus(canHandle);
                 return;
             }
@@ -679,16 +689,18 @@ namespace can2mqtt
                 //TPCANStatus status = PCANBasic.SetValue(canHandle, TPCANParameter. PCAN_PARAMETER_LOOPBACK, TPCANParameter.PCAN_PARAMETER_ON, sizeof(uint));
                 if (status != TPCANStatus.PCAN_ERROR_OK)
                 {
-                    Logger.LogError("Error initializing PCAN: {0}", status);
-                    return;
+                    //03032025 die zwei teilen mal raus und schauen ob dann alle Nachrichten ankommen
+                    //Logger.LogError("Error initializing PCAN: {0}", status);
+                    //return;
                 }
 
-                Logger.LogInformation("CONNECTED TO PCAN {0}", canHandle);
+                //Logger.LogInformation("CONNECTED TO PCAN {0}", canHandle);
 
                 // Infinite loop to read CAN bus data
                 byte[] data = new byte[8];
                 string responseData = string.Empty;
                 var previousData = "";
+                string FrameConverter = "";
 
                 while (true)
                 {
@@ -699,13 +711,20 @@ namespace can2mqtt
 
                     if (status != TPCANStatus.PCAN_ERROR_OK)
                     {
-                        Logger.LogError("Error reading CAN message: {0}", status);
-                        break;
+                        //Logger.LogError("Error reading CAN message: {0}", status);
+                        //03032025 auch das break hier raus und schauen ob dann alles ankommt
+                        continue;
+                        //break;
                     }
+                    //hier wird aus der Can Message so ein Frame gemacht
+                    FrameConverter = BuildCanFrameString(canMsg, canTimestamp);
 
-                    responseData = previousData + BitConverter.ToString(canMsg.DATA, 0, canMsg.LEN);
+                    responseData = previousData + FrameConverter;
 
-                    // Each received frame starts with "< frame " and ends with " >".
+                    //< frame 6A0 1630437901.513376 3100FA000E0000 >
+                    //Aus den der canMsg den Frame bauen
+
+                    //Each received frame starts with "< frame " and ends with " >".
                     if (!responseData.StartsWith("< frame "))
                     {
                         if (responseData.Contains("< frame "))
@@ -734,9 +753,16 @@ namespace can2mqtt
                         {
                             RawFrame = frame
                         };
-
-                        Logger.LogInformation("Received CAN Frame: {0}", canFrame.RawFrame);
-                        responseData = responseData.Substring(responseData.IndexOf(" >") + 2);
+                        //03032025 dieses if eingebaut da ich im Log ganz viele Frames mit 000 erhalte
+                        if (canFrame.PayloadSenderCanId != "000")
+                        {
+                            Logger.LogInformation("Received CAN Frame: {0}", canFrame.RawFrame);
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                            responseData = responseData.Substring(responseData.IndexOf(" >") + 2);
 
                         if ((canFrame.CanFrameType == "0" && CanForwardWrite) ||
                             (canFrame.CanFrameType == "1" && CanForwardRead) ||
@@ -750,17 +776,28 @@ namespace can2mqtt
                 }
 
                 PCANBasic.Uninitialize(canHandle);
-                Logger.LogInformation("Disconnected from PCAN {0}", canHandle);
+                //Logger.LogInformation("Disconnected from PCAN {0}", canHandle);
             }
             catch (Exception ex)
             {
-                Logger.LogError(ex, "Error while reading CAN bus.");
+                //03032025 auch das hier raus
+                //Logger.LogError(ex, "Error while reading CAN bus.");
             }
             finally
             {
                 // Reconnect to the CAN bus but do not wait for this here to avoid infinite loops
                 _ = PcCanBusListener(canHandle); // Reconnect
             }
+        }
+
+        string BuildCanFrameString(TPCANMsg canMsg, TPCANTimestamp canTimestamp)
+        {
+            string idHex = canMsg.ID.ToString("X3");
+            //string timestamp = (canTimestamp.micros / 1000000.0).ToString("F6", CultureInfo.InvariantCulture);
+            string timestamp = DateTimeOffset.Now.ToUnixTimeSeconds() + "." + DateTimeOffset.Now.ToString("ffffff", CultureInfo.InvariantCulture);
+            string data = BitConverter.ToString(canMsg.DATA, 0, canMsg.LEN).Replace("-", "");
+
+            return $"< frame {idHex} {timestamp} {data} >";
         }
 
         /// <summary>
@@ -780,7 +817,8 @@ namespace can2mqtt
                 if (Translator != null)
                 {
                     canMsg = Translator.Translate(canMsg, NoUnit, Language, ConvertUnknown);
-                    if (!canMsg.IsComplete) {
+                    if (!canMsg.IsComplete)
+                    {
                         Logger.LogDebug("Waiting for additional data for MQTT topic {0}", canMsg.MqttTopicExtention);
                         return;
                     }
@@ -792,7 +830,7 @@ namespace can2mqtt
                     Logger.LogInformation("UNHANDLED DISCONNECT FROM MQTT BROKER");
                     while (!MqttClient.IsConnected)
                     {
-                        await Task.Delay(TimeSpan.FromSeconds(5));
+                        await Task.Delay(TimeSpan.FromSeconds(2));
 
                         try
                         {
