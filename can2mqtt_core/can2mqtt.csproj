@@ -16,12 +16,6 @@
     <Resource Include="config-sample.json" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="translator\stiebel_eltron\StiebelEltron.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
 	<PropertyGroup>
 		<ServerGarbageCollection>true</ServerGarbageCollection>
 	</PropertyGroup>

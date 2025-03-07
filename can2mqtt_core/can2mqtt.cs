@@ -38,7 +38,7 @@ namespace can2mqtt
         private string MqttPassword;
         private string MqttServer;
         private string MqttClientId;
-        private bool MqttAcceptSet = false;
+        private bool MqttAcceptSet = true;
         //private NetworkStream TcpCanStream;
         //private TcpClient ScdClient = null;
         private StiebelEltron Translator = null;
@@ -50,7 +50,7 @@ namespace can2mqtt
         private int AutoPollingInterval = 120; // in seconds
         private int AutoPollingThrottle = 150; // in milliseconds
         private Task AutoPollingTask = null;
-        byte[] CanSenddata = new byte[9];
+        byte[] CanSenddata = new byte[8];
 
 
         private readonly ILoggerFactory LoggerFactory;
