@@ -1033,6 +1033,54 @@
     "ReadOnly": false
   },
   {
+    "Index": "0A06",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "DWH Set ECO",
+      "DE": "Warmwasser Soll ECO"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/dwh/temperature/eco",
+    "Default": "42.5",
+    "MinValue": "10",
+    "MaxValue": "65",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0A20",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Collective Relay Status",
+      "DE": "Sammel-Relaisstatus"
+    },
+    "Description": {
+      "EN": "Bit field. 015C seen while the compressor was running; 0000 and 0060 seen at standstill. Meaning of single bits not verified.",
+      "DE": "Bitfeld. 015C bei laufendem Verdichter beobachtet; 0000 und 0060 im Stillstand. Bedeutung der einzelnen Bits nicht verifiziert."
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/status/relaystatus",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
     "Index": "05BF",
     "Sender": "180",
     "Receiver": "6A0",
