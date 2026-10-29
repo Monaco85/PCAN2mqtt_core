@@ -63,10 +63,13 @@ namespace can2mqtt
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            while (!stoppingToken.IsCancellationRequested)
+            // The actual work happens in StartAsync; just keep the service alive.
+            try
             {
-                Logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                await Task.Delay(10, stoppingToken);
+                await Task.Delay(Timeout.Infinite, stoppingToken);
+            }
+            catch (OperationCanceledException)
+            {
             }
         }
 
@@ -711,10 +714,9 @@ namespace can2mqtt
 
                     if (status != TPCANStatus.PCAN_ERROR_OK)
                     {
-                        //Logger.LogError("Error reading CAN message: {0}", status);
-                        //03032025 auch das break hier raus und schauen ob dann alles ankommt
+                        // Queue empty (or transient error): yield instead of spinning at 100% CPU
+                        await Task.Delay(5);
                         continue;
-                        //break;
                     }
                     //hier wird aus der Can Message so ein Frame gemacht
                     FrameConverter = BuildCanFrameString(canMsg, canTimestamp);
@@ -753,16 +755,15 @@ namespace can2mqtt
                         {
                             RawFrame = frame
                         };
+                        // consume the frame first, otherwise skipping it would loop forever
+                        responseData = responseData.Substring(responseData.IndexOf(" >") + 2);
+
                         //03032025 dieses if eingebaut da ich im Log ganz viele Frames mit 000 erhalte
-                        if (canFrame.PayloadSenderCanId != "000")
-                        {
-                            Logger.LogInformation("Received CAN Frame: {0}", canFrame.RawFrame);
-                        }
-                        else
+                        if (canFrame.PayloadSenderCanId == "000")
                         {
                             continue;
                         }
-                            responseData = responseData.Substring(responseData.IndexOf(" >") + 2);
+                        Logger.LogInformation("Received CAN Frame: {0}", canFrame.RawFrame);
 
                         if ((canFrame.CanFrameType == "0" && CanForwardWrite) ||
                             (canFrame.CanFrameType == "1" && CanForwardRead) ||
@@ -780,12 +781,12 @@ namespace can2mqtt
             }
             catch (Exception ex)
             {
-                //03032025 auch das hier raus
-                //Logger.LogError(ex, "Error while reading CAN bus.");
+                Logger.LogError(ex, "Error while reading CAN bus.");
             }
             finally
             {
-                // Reconnect to the CAN bus but do not wait for this here to avoid infinite loops
+                // Reconnect to the CAN bus after a pause so failures cannot spin the CPU
+                await Task.Delay(TimeSpan.FromSeconds(2));
                 _ = PcCanBusListener(canHandle); // Reconnect
             }
         }

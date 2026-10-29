@@ -247,8 +247,8 @@
     "Unit": "°C",
     "Converter": "Dec",
     "Name": {
-      "EN": "Set DWH Temperature",
-      "DE": "Warmwasser Soll-Temperatur"
+      "EN": "Current DWH Setpoint",
+      "DE": "Warmwasser Soll aktuell"
     },
     "Description": {
       "EN": "",
