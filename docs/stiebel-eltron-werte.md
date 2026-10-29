@@ -67,7 +67,7 @@ mqtt:
 | `301` | FEK, liefert Raumtemperatur, Feuchte und Raumsollwert |
 | `100` | fragt `180` zyklisch ab (vermutlich ISG oder ein Gateway) |
 | `480` / `700` | fragen sich gegenseitig Register ab, für die Werte hier unwichtig |
-| `680` | can2mqtt, `CanSenderId` in der Beispielkonfiguration ist `69F` |
+| `680` | **Du:** dein PC mit PCAN-Adapter und can2mqtt. Auch Testframes aus PCAN-View gehen mit dieser ID raus. `CanSenderId` in der Beispielkonfiguration ist `69F`. |
 
 ## Aufbau eines Frames
 

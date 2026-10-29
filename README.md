@@ -61,9 +61,11 @@ flowchart LR
     WP["Wärmepumpe<br/>180"] -- "Messwerte, Broadcast an 379" --> BUS(("CAN-Bus"))
     FEK["FEK<br/>301"] -- "Raumtemperatur, Raumsollwert" --> BUS
     ISG["100<br/>vermutlich ISG"] -- "fragt 180 zyklisch ab" --> BUS
-    BUS --- C2M["can2mqtt<br/>680"]
+    BUS --- C2M["DU: dein PC mit can2mqtt<br/>und PCAN-Adapter, ID 680"]
     C2M -- "MQTT" --> HA["Home Assistant"]
 ```
+
+Du bist in diesem Bild der Teilnehmer mit der ID `680`: dein PC mit PCAN-Adapter, auf dem can2mqtt läuft. Auch deine Testframes aus PCAN-View gehen mit dieser ID raus. Alle anderen Teilnehmer sind Geräte der Anlage.
 
 Aufbau eines Frames:
 
