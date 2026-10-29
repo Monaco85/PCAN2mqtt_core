@@ -1,0 +1,2169 @@
+﻿[
+  {
+    "Index": "0x000C",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Outside Temperature",
+      "DE": "Außentemperatur"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/outside/temperature/measured",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true,
+    "IgnorePolling": true
+  },
+  {
+    "Index": "000F",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Actual Value HC1",
+      "DE": "Istwert HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/heatcircle/hc1/temperature/measured",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "0004",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Set Value HC1",
+      "DE": "Sollwert HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/heatcircle/hc1/temperature/desired",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "000D",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Flow Temperature",
+      "DE": "Vorlauftemperatur"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/flow/temperature/measured",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "0016",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Return Temperature",
+      "DE": "Rücklauftemperatur"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/returnflow/temperature/measured",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "01DA",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "l/min",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Flow Rate",
+      "DE": "Volumenstrom"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/flow/flowrate/measured",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "0011",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Room Temperature HC1",
+      "DE": "Raumtemperatur HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/room/hc1/temperature/measured",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "0075",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Room Humidity HC1",
+      "DE": "Raumfeuchte HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/room/hc1/humidity/measured",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "0012",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Set Room Temperature HC1",
+      "DE": "Raumsolltemperatur HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/room/hc1/temperature/desired",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "000E",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "DWH Temperature",
+      "DE": "Warmwasser Temperatur"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/dwh/temperature/measured",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "0003",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Current DWH Setpoint",
+      "DE": "Warmwasser Soll aktuell"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/dwh/temperature/desired",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "0264",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "DEW Point Temperature Heat Circle 1",
+      "DE": "Taupunkttemperatur HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/heatcircle/hc1/dew",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "AAAA",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Collector Temperature",
+      "DE": "Kollektortemperatur"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/collector/temperature/measured",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "C0F4",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Compressor Starts (4.-6. digit)",
+      "DE": "Verdichterstarts (4.-6. Stelle)"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/compressor/counter1",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "C0F5",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Compressor Starts (1.-3. digit)",
+      "DE": "Verdichterstarts (1.-3. Stelle)"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/compressor/counter1000",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "092F",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "KWh",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Heat Meter Heating Day",
+      "DE": "Wärmemenge Heizen Tag"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/meter/heating/day/KWh",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "0931",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "MWh",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Heat Meter Heating Total",
+      "DE": "Wärmemenge Heizen Summe"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/meter/heating/total/MWh",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "092B",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "KWh",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Heat Meter DWH Day",
+      "DE": "Wärmemenge Warmwasser Tag"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/meter/dwh/day/KWh",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "092D",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "MWh",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Heat Meter DWH Total",
+      "DE": "Wärmemenge Warmwasser Summe"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/meter/dwh/total/MWh",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "0929",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "MWh",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Heat Meter Boost Heating Total",
+      "DE": "Wärmemenge Notheizung Heizen Summe"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/meter/boost/heat/total/MWh",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "0925",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "MWh",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Heat Meter Boost DWH Total",
+      "DE": "Wärmemenge Notheizung Warmwasser Summe"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/meter/boost/dwh/total/MWh",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "0649",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "MWh",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Heat Meter Cooling Total",
+      "DE": "Wärmemenge Kühlen Summe"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/meter/cooling/total/MWh",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "05A4",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "h",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Compressor Heating",
+      "DE": "Verdichter Heizen"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/compressor/heating/time",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "05A5",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "h",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Compressor Cooling",
+      "DE": "Verdichter Kühlen"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/compressor/cooling/time",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "05A6",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "h",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Compressor DHW",
+      "DE": "Verdichter Warmwasser"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/compressor/dwh/time",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "05A8",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "h",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Electric Booster Heating",
+      "DE": "Elektrische Notheizung Heizen"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/boost/heating/time",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "05A7",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "h",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Electric Booster DHW",
+      "DE": "Elektrische Notheizung Warmwasser"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/boost/dwh/time",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "091F",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "KWh",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Power Consumption Heating Day",
+      "DE": "Stomverbrauch Heizung Tag"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/meter/heating/power/day/KWh",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "0921",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "MWh",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Power Consumption Heating Total",
+      "DE": "Stromverbrauch Heizung Summe"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/meter/heating/power/total/MWh",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "091B",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "KWh",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Power Consumption DHW Day",
+      "DE": "Stromverbrauch Warmwasser Tag"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/meter/dwh/power/day/KWh",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "091D",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "MWh",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Power Consumption DHW Total",
+      "DE": "Stromverbrauch Warmwasser Summe"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/meter/dwh/power/total/MWh",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "05D1",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "",
+    "Converter": "TimeRangeLittleEndian",
+    "Name": {
+      "EN": "Party Program Start",
+      "DE": "Partyprogramm Start"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/program/party/start",
+    "Default": "",
+    "MinValue": "00:00",
+    "MaxValue": "23:45",
+    "ReadOnly": false
+  },
+  {
+    "Index": "05D2",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "",
+    "Converter": "TimeRangeLittleEndian",
+    "Name": {
+      "EN": "Party Program End",
+      "DE": "Partyprogramm Ende"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/program/party/end",
+    "Default": "",
+    "MinValue": "00:00",
+    "MaxValue": "23:45",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0005",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Room Temperature Day HC1",
+      "DE": "Raumtemperatur Tag HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/room/hc1/temperature/day",
+    "Default": "21",
+    "MinValue": "10",
+    "MaxValue": "30",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0008",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Room Temperature Night HC1",
+      "DE": "Raumtemperatur Nacht HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/room/hc1/temperature/night",
+    "Default": "21",
+    "MinValue": "10",
+    "MaxValue": "30",
+    "ReadOnly": false
+  },
+  {
+    "Index": "013D",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Room Temperature Standby HC1",
+      "DE": "Raumtemperatur Bereitschaft HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/room/hc1/temperature/standby",
+    "Default": "10",
+    "MinValue": "10",
+    "MaxValue": "30",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0129",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Manual Set HC1",
+      "DE": "Heizkreissoll Hand HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/room/hc1/temperature/manual",
+    "Default": "35",
+    "MinValue": "10",
+    "MaxValue": "65",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0011",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Room Temperature HC1",
+      "DE": "Raumtemperatur HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/room/hc1/temperature/measured",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "010E",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "",
+    "Converter": "Cent",
+    "Name": {
+      "EN": "Gradient HC1",
+      "DE": "Steigung HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/heatcircle/hc1/gradient",
+    "Default": "0.3",
+    "MinValue": "0",
+    "MaxValue": "5",
+    "ReadOnly": false
+  },
+  {
+    "Index": "010F",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Room Influence HC1",
+      "DE": "Raumeinfluss HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/heatcircle/hc1/roominfluence",
+    "Default": "0",
+    "MinValue": "0",
+    "MaxValue": "100",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0116",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Summer Mode",
+      "DE": "Sommerbetrieb"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/heating/summermode",
+    "Default": "17",
+    "MinValue": "10",
+    "MaxValue": "25",
+    "ReadOnly": false
+  },
+  {
+    "Index": "05A3",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Outside Temperature Correction",
+      "DE": "Korrektur Außentemperatur"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/heating/outsidetemperaturecorrection",
+    "Default": "0",
+    "MinValue": "-20",
+    "MaxValue": "30",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0013",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "DWH Set Day",
+      "DE": "Warmwasser Soll Tag"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/dwh/temperature/day",
+    "Default": "45",
+    "MinValue": "10",
+    "MaxValue": "65",
+    "ReadOnly": false
+  },
+  {
+    "Index": "05BF",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "DWH Set Night",
+      "DE": "Warmwasser Soll Nacht"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/dwh/temperature/night",
+    "Default": "45",
+    "MinValue": "10",
+    "MaxValue": "65",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0581",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "DWH Set Standby",
+      "DE": "Warmwasser Soll Bereitschaft"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/dwh/temperature/standby",
+    "Default": "10",
+    "MinValue": "10",
+    "MaxValue": "65",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0580",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "DWH Set Manual",
+      "DE": "Warmwasser Soll Handbetrieb"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/dwh/temperature/manual",
+    "Default": "45",
+    "MinValue": "10",
+    "MaxValue": "65",
+    "ReadOnly": false
+  },
+  {
+    "Index": "000E",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "DWH Temperature",
+      "DE": "Warmwasser Temperatur"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/dwh/temperature/measured",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "0140",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "K",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Hysteresis",
+      "DE": "Hysterese"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/dwh/hysteresis",
+    "Default": "2",
+    "MinValue": "2",
+    "MaxValue": "10",
+    "ReadOnly": false
+  },
+  {
+    "Index": "058A",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "",
+    "Converter": "Default",
+    "Name": {
+      "EN": "DHW Booster Stage",
+      "DE": "Notheizung Stufe Warmwasser"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/dwh/boosterstate",
+    "Default": "3",
+    "MinValue": "0",
+    "MaxValue": "3",
+    "ReadOnly": false
+  },
+  {
+    "Index": "058B",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "",
+    "Converter": "Bool",
+    "Name": {
+      "EN": "DHW Buffer Mode",
+      "DE": "Warmwasser Pufferbetrieb"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/dwh/buffermode",
+    "Default": "0",
+    "MinValue": "0",
+    "MaxValue": "1",
+    "ReadOnly": false
+  },
+  {
+    "Index": "058D",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "",
+    "Converter": "Bool",
+    "Name": {
+      "EN": "DHW Eco",
+      "DE": "Warmwasser Eco"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/dwh/eco",
+    "Default": "1",
+    "MinValue": "0",
+    "MaxValue": "1",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0690",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "%",
+    "Converter": "Default",
+    "Name": {
+      "EN": "DHW Output Summer",
+      "DE": "Warmwasser Leistung Sommer"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/dwh/outputsummer",
+    "Default": "60",
+    "MinValue": "30",
+    "MaxValue": "100",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0691",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "%",
+    "Converter": "Default",
+    "Name": {
+      "EN": "DHW Output Winter",
+      "DE": "Warmwasser Leistung Winter"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/dwh/outputwinter",
+    "Default": "60",
+    "MinValue": "30",
+    "MaxValue": "100",
+    "ReadOnly": false
+  },
+  {
+    "Index": "C0DB",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "",
+    "Converter": "Custom",
+    "Name": {
+      "EN": "Integral Sensor",
+      "DE": "Integralsensor"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {
+        "0000": "Off",
+        "0001": "On",
+        "0002": "Regulated"
+      },
+      "DE": {
+        "0000": "Aus",
+        "0001": "Ein",
+        "0002": "Regelung"
+      }
+    },
+    "MqttTopic": "/dwh/integralsensor",
+    "Default": "Aus",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "0569",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Room Temperature Day HC1",
+      "DE": "Raumtemperatur Tag HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/cooling/hc1/temperature/day",
+    "Default": "25",
+    "MinValue": "10",
+    "MaxValue": "30",
+    "ReadOnly": false
+  },
+  {
+    "Index": "056B",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Cool Room Temperature Night HC1",
+      "DE": "Cool Raumtemperatur Nacht HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/cooling/hc1/temperature/night",
+    "Default": "25",
+    "MinValue": "10",
+    "MaxValue": "30",
+    "ReadOnly": false
+  },
+  {
+    "Index": "056A",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Cool Room Temperature Standby HC1",
+      "DE": " Cool Raumtemperatur Bereitschaft HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/cooling/hc1/temperature/standby",
+    "Default": "30",
+    "MinValue": "10",
+    "MaxValue": "30",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0011",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Cool Room Temperature HC1",
+      "DE": "Cool Raumtemperatur HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/room/hc1/temperature/measured",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "0287",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "",
+    "Converter": "Bool",
+    "Name": {
+      "EN": "Cool Cooling Mode HC1",
+      "DE": "Cool Kühlbetrieb HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/cooling/hc1/enable",
+    "Default": "0",
+    "MinValue": "0",
+    "MaxValue": "1",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0613",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "",
+    "Converter": "Custom",
+    "Name": {
+      "EN": "Cool Cooling System HC1",
+      "DE": "Cool Kühlsystem HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {
+        "0000": "Areacooling",
+        "0001": "Blowercolling"
+      },
+      "DE": {
+        "0000": "Flächenkühlung",
+        "0001": "Gebläsekühlung"
+      }
+    },
+    "MqttTopic": "/cooling/hc1/system",
+    "Default": "0",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "0582",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Cool Temperature Cooling HC1",
+      "DE": "Cool Temperatur Kühlen HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/cooling/hc1/temperature",
+    "Default": "18",
+    "MinValue": "10",
+    "MaxValue": "25",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0584",
+    "Sender": "301",
+    "Receiver": "6A0",
+    "Unit": "K",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Cool Hysteresis Room Temperature HC1",
+      "DE": "Cool Hysterese Raumtemperatur HK1"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/cooling/hc1/hysteresistemperature",
+    "Default": "0.5",
+    "MinValue": "0.5",
+    "MaxValue": "3",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0692",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "%",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Cool Cooling Capacity",
+      "DE": "Cool Leistung Kühlen"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/cooling/capacity",
+    "Default": "30",
+    "MinValue": "30",
+    "MaxValue": "50",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0109",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Room Temperature Correction",
+      "DE": "Korrektur Raumtemperatur Bedienteil"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/controller/roomtemperaturecorrection",
+    "Default": "0",
+    "MinValue": "-5",
+    "MaxValue": "5",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0122",
+    "Sender": "180",
+    "Receiver": "6BC",
+    "Unit": "",
+    "Converter": "LittleEndian",
+    "Name": {
+      "EN": "Day",
+      "DE": "Tag"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/time/day",
+    "Default": "1",
+    "MinValue": "1",
+    "MaxValue": "31",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0123",
+    "Sender": "180",
+    "Receiver": "6BC",
+    "Unit": "",
+    "Converter": "LittleEndian",
+    "Name": {
+      "EN": "Month",
+      "DE": "Monat"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/time/month",
+    "Default": "1",
+    "MinValue": "1",
+    "MaxValue": "12",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0124",
+    "Sender": "180",
+    "Receiver": "6BC",
+    "Unit": "",
+    "Converter": "LittleEndian",
+    "Name": {
+      "EN": "Year",
+      "DE": "Jahr"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/time/year",
+    "Default": "0",
+    "MinValue": "0",
+    "MaxValue": "99",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0125",
+    "Sender": "180",
+    "Receiver": "6BC",
+    "Unit": "",
+    "Converter": "LittleEndian",
+    "Name": {
+      "EN": "Hour",
+      "DE": "Stunde"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/time/hour",
+    "Default": "0",
+    "MinValue": "0",
+    "MaxValue": "23",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0126",
+    "Sender": "180",
+    "Receiver": "6BC",
+    "Unit": "",
+    "Converter": "LittleEndian",
+    "Name": {
+      "EN": "Minute",
+      "DE": "Minute"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/time/minute",
+    "Default": "0",
+    "MinValue": "0",
+    "MaxValue": "59",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0944",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "",
+    "Converter": "Bool",
+    "Name": {
+      "EN": "Summertime Automatic",
+      "DE": "Sommerzeit Automatik"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/time/summertime/auto",
+    "Default": "1",
+    "MinValue": "0",
+    "MaxValue": "1",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0121",
+    "Sender": "180",
+    "Receiver": "6BC",
+    "Unit": "",
+    "Converter": "Custom",
+    "Name": {
+      "EN": "Day of Week",
+      "DE": "Wochentag"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {
+        "0000": "Monday",
+        "0100": "Tuesday",
+        "0200": "Wednesday",
+        "0300": "Thursday",
+        "0400": "Friday",
+        "0500": "Saturday",
+        "0600": "Sunday"
+      },
+      "DE": {
+        "0000": "Montag",
+        "0100": "Dienstag",
+        "0200": "Mittwoch",
+        "0300": "Donnerstag",
+        "0400": "Freitag",
+        "0500": "Samstag",
+        "0600": "Sonntag"
+      }
+    },
+    "MqttTopic": "/time/dayofweek",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "0127",
+    "Sender": "180",
+    "Receiver": "6BC",
+    "Unit": "",
+    "Converter": "LittleEndian",
+    "Name": {
+      "EN": "Second",
+      "DE": "Sekunde"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/time/second",
+    "Default": "0",
+    "MinValue": "0",
+    "MaxValue": "59",
+    "ReadOnly": false
+  },
+  {
+    "Index": "027A",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "",
+    "Converter": "Bool",
+    "Name": {
+      "EN": "Delete Fault Memory",
+      "DE": "Fehlerspeicher löschen"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/system/errorlistdelete",
+    "Default": "0",
+    "MinValue": "0",
+    "MaxValue": "1",
+    "ReadOnly": false
+  },
+  {
+    "Index": "05C7",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "",
+    "Converter": "Bool",
+    "Name": {
+      "EN": "Stop Event",
+      "DE": "Stopp Ereigniss"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/system/stopevent",
+    "Default": "0",
+    "MinValue": "0",
+    "MaxValue": "64",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0001",
+    "Sender": "180",
+    "Receiver": "6BC",
+    "Unit": "",
+    "Converter": "",
+    "Name": {
+      "EN": "Error List",
+      "DE": "Fehlerspeicher"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/system/errorlist",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": false
+  },
+  {
+    "Index": "02CC",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "%",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Pump Speed DHW",
+      "DE": "Pumpendrehzahl Warmwasser"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/setting/dwhpumpspeed",
+    "Default": "80",
+    "MinValue": "40",
+    "MaxValue": "100",
+    "ReadOnly": false
+  },
+  {
+    "Index": "02CB",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "%",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Pump Speed Heating",
+      "DE": "Pumpendrehzahl Heizen"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/setting/heatingpumpspeed",
+    "Default": "80",
+    "MinValue": "40",
+    "MaxValue": "100",
+    "ReadOnly": false
+  },
+  {
+    "Index": "C0E3",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "%",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Mixer/Heating Ratio",
+      "DE": "Verhältniss Mischer-Heizen"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/setting/mixerheatingration",
+    "Default": "100",
+    "MinValue": "0",
+    "MaxValue": "100",
+    "ReadOnly": false
+  },
+  {
+    "Index": "0651",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "min",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Mixer P Run-On",
+      "DE": "Mischer-P"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/setting/mixerprunon",
+    "Default": "10",
+    "MinValue": "0",
+    "MaxValue": "120",
+    "ReadOnly": false
+  },
+  {
+    "Index": "C0E2",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "",
+    "Converter": "Default",
+    "Name": {
+      "EN": "Mixer P Type",
+      "DE": "Mischer-P Typ"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/setting/mixerptype",
+    "Default": "0",
+    "MinValue": "0",
+    "MaxValue": "2",
+    "ReadOnly": false
+  },
+  {
+    "Index": "000C",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Outside Temperature",
+      "DE": "Außentemperatur"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/outside/temperature/measured",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "000D",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Flow Temperature",
+      "DE": "Vorlauftemperatur"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/processvalues/flowtemp",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "0016",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Return Temperature",
+      "DE": "Rücklauftemperatur"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/processvalues/returntemp",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "063F",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "°C",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Cooling Temperature",
+      "DE": "Kühlungstemperatur"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/processvalues/coolingtemp",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "C0F0",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "%",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "PWM Heat Circuit Pump",
+      "DE": "PWM Heizkreispumpe"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/processvalues/pwmheatcircuitpump",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "0699",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "%",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "PWM Mixer Pump",
+      "DE": "PWM Mischerpumpe"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/processvalues/pwmmixerpump",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "081C",
+    "Sender": "180",
+    "Receiver": "6A0",
+    "Unit": "%",
+    "Converter": "Dec",
+    "Name": {
+      "EN": "Actual Heat/Cool Output",
+      "DE": "Heiz-/Kühlleistung gemessen"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/analysis/heatcooloutput",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "0112",
+    "Sender": "180",
+    "Receiver": "6BC",
+    "Unit": "",
+    "Converter": "Binary",
+    "Name": {
+      "EN": "OperationSwitch",
+      "DE": "Programmschalter"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/status/operationswitch",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  },
+  {
+    "Index": "0176",
+    "Sender": "180",
+    "Receiver": "6BC",
+    "Unit": "",
+    "Converter": "Bool",
+    "Name": {
+      "EN": "OperationStatus",
+      "DE": "Betriebsstatus"
+    },
+    "Description": {
+      "EN": "",
+      "DE": ""
+    },
+    "Values": {
+      "EN": {},
+      "DE": {}
+    },
+    "MqttTopic": "/status/operationstatus",
+    "Default": "",
+    "MinValue": null,
+    "MaxValue": null,
+    "ReadOnly": true
+  }
+]
