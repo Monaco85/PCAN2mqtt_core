@@ -1067,8 +1067,8 @@
       "DE": "Sammel-Relaisstatus"
     },
     "Description": {
-      "EN": "Bit field. 015C seen while the compressor was running; 0000 and 0060 seen at standstill. Meaning of single bits not verified.",
-      "DE": "Bitfeld. 015C bei laufendem Verdichter beobachtet; 0000 und 0060 im Stillstand. Bedeutung der einzelnen Bits nicht verifiziert."
+      "EN": "Bit field. Bits 0x0C (8+4) = compressor running, 0x20 = heating, 0x10 = DHW, 0x100 = heat demand, 0x40 always set. Seen: 0060 idle, 0160 demand, 016C compressor heating, 015C compressor DHW.",
+      "DE": "Bitfeld. Bits 0x0C (8+4) = Verdichter laeuft, 0x20 = Heizen, 0x10 = Warmwasser, 0x100 = Waermeanforderung, 0x40 immer gesetzt. Beobachtet: 0060 Ruhe, 0160 Anforderung, 016C Verdichter Heizen, 015C Verdichter Warmwasser."
     },
     "Values": {
       "EN": {},
