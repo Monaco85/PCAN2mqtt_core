@@ -1,6 +1,6 @@
 # Optional: AssettoServer (https://github.com/compujuckel/AssettoServer) statt des Original-acServer.
-# Nötig für Content Manager/CSP-Features (Wetter, Custom Shaders Patch, Plugins).
-# Voraussetzung: install.ps1 wurde bereits ausgeführt (nutzt dessen Strecken/Autos).
+# Noetig fuer Content Manager/CSP-Features (Wetter, Custom Shaders Patch, Plugins).
+# Voraussetzung: install.ps1 wurde bereits ausgefuehrt (nutzt dessen Strecken/Autos).
 $ErrorActionPreference = "Stop"
 $root = $PSScriptRoot
 $dest = Join-Path $root "assettoserver"
